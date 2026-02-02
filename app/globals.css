@@ -1,26 +1,125 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  /* Brand palette (pastel pinks + soft coral) */
+  --bg: #fffafb;
+  --surface: #ffffff;
+  --ink: #241b1d;
+  --muted: #6b5b62;
+  --border: rgba(36, 27, 29, 0.12);
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --pink-50: #fff1f5;
+  --pink-100: #ffe4ec;
+  --pink-200: #ffd1de;
+  --coral-500: #f06f7f;
+  --coral-600: #e85f72;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --ring: rgba(240, 111, 127, 0.35);
+
+  --shadow-sm: 0 10px 30px rgba(36, 27, 29, 0.08);
+  --shadow-md: 0 18px 50px rgba(36, 27, 29, 0.12);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(900px 450px at 18% 12%, rgba(255, 209, 222, 0.55), rgba(255, 209, 222, 0) 60%),
+    radial-gradient(900px 450px at 88% 8%, rgba(255, 228, 236, 0.75), rgba(255, 228, 236, 0) 58%),
+    radial-gradient(900px 550px at 55% 78%, rgba(240, 111, 127, 0.10), rgba(240, 111, 127, 0) 62%),
+    linear-gradient(180deg, var(--bg), #ffffff);
+  font-family: var(--font-body-sans), ui-sans-serif, system-ui, -apple-system,
+    Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Keep anchored sections visible under the sticky nav */
+section {
+  scroll-margin-top: 5.25rem;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: rgba(240, 111, 127, 0.22);
+}
+
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+.display {
+  font-family: var(--font-display-serif), ui-serif, Georgia, Cambria,
+    "Times New Roman", Times, serif;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  font-weight: 600;
+  padding: 0.85rem 1.15rem;
+  transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease,
+    border-color 160ms ease;
+  will-change: transform;
+}
+
+.btn:focus-visible {
+  outline: 0;
+  box-shadow: 0 0 0 6px var(--ring);
+}
+
+.btnPrimary {
+  background: linear-gradient(180deg, var(--coral-500), var(--coral-600));
+  color: white;
+  box-shadow: 0 16px 40px rgba(240, 111, 127, 0.35);
+}
+
+.btnPrimary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 22px 55px rgba(240, 111, 127, 0.42);
+}
+
+.btnSecondary {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid var(--border);
+  color: var(--ink);
+}
+
+.btnSecondary:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }
